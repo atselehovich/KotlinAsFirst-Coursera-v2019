@@ -4,6 +4,11 @@ package lesson2.task2
 
 import lesson1.task1.sqr
 
+fun main() {
+    println("кирпич поместится: ${brickPasses(6, 5, 4, 10, 6)}")
+    println("число счастливое: ${isNumberHappy(4233)}")
+}
+
 /**
  * Пример
  *
@@ -18,7 +23,21 @@ fun pointInsideCircle(x: Double, y: Double, x0: Double, y0: Double, r: Double) =
  * Четырехзначное число назовем счастливым, если сумма первых двух ее цифр равна сумме двух последних.
  * Определить, счастливое ли заданное число, вернуть true, если это так.
  */
-fun isNumberHappy(number: Int): Boolean = TODO()
+fun isNumberHappy(number: Int): Boolean {
+    var hundreds: Int
+    var tens: Int
+    var firstDigit: Int
+    var secondDigit: Int
+    var thirdDigit: Int
+    var forthDigit: Int
+    firstDigit = number / 1000
+    hundreds = number - firstDigit * 1000
+    secondDigit = hundreds / 100
+    tens = hundreds - secondDigit * 100
+    thirdDigit = tens / 10
+    forthDigit = tens - thirdDigit * 10
+    return (firstDigit + secondDigit) == (thirdDigit + forthDigit)
+}
 
 /**
  * Простая
@@ -59,4 +78,8 @@ fun circleInside(
  * кирпич 4 х 4 х 4 пройдёт через отверстие 4 х 4.
  * Вернуть true, если кирпич пройдёт
  */
-fun brickPasses(a: Int, b: Int, c: Int, r: Int, s: Int): Boolean = TODO()
+fun brickPasses(a: Int, b: Int, c: Int, r: Int, s: Int): Boolean {
+    return ((a <= r) && (b <= s)) || ((a <= s) && (b <= r))
+            || ((a <= r) && (c <= s)) || ((a <= s) && (c <= r))
+            || ((c <= r) && (b <= s)) || ((c <= s) && (b <= r))
+}

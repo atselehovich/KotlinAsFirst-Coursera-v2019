@@ -6,6 +6,11 @@ import lesson1.task1.discriminant
 import kotlin.math.max
 import kotlin.math.sqrt
 
+fun main() {
+    println("${ageDescription(100)}")
+    println("${segmentLength(8, 14, 2, 3)}")
+}
+
 /**
  * Пример
  *
@@ -63,7 +68,24 @@ fun minBiRoot(a: Double, b: Double, c: Double): Double {
  * Мой возраст. Для заданного 0 < n < 200, рассматриваемого как возраст человека,
  * вернуть строку вида: «21 год», «32 года», «12 лет».
  */
-fun ageDescription(age: Int): String = TODO()
+fun ageDescription(age: Int): String {
+    return when {
+        age == 1 || age == 21 || age == 31 || age == 41 || age == 51
+                || age == 61 || age == 71 || age == 81 || age == 91
+                || age == 101 || age == 121 || age == 131
+                || age == 141 || age == 151 || age == 161 || age == 171
+                || age == 181 || age == 191 || age == 201 -> "$age год"
+        age in 2..4 || age in 22..24 || age in 32..34 || age in 42..44
+                || age in 52..54 || age in 62..64 || age in 72..74 || age in 82..84
+                || age in 92..94 || age in 102..104 || age in 122..124
+                || age in 132..134 || age in 142..144 || age in 152..154 || age in 162..164
+                || age in 172..174 || age in 182..184 || age in 192..194 || age in 202..204 -> "$age года"
+        else -> "$age лет"
+    }
+    /* return when (ageVariant) {
+        ageVariant = "One" -> "$age год"
+     } */
+}
 
 /**
  * Простая
@@ -127,4 +149,15 @@ fun triangleKind(a: Double, b: Double, c: Double): Int = TODO()
  * Найти длину пересечения отрезков AB и CD.
  * Если пересечения нет, вернуть -1.
  */
-fun segmentLength(a: Int, b: Int, c: Int, d: Int): Int = TODO()
+fun segmentLength(a: Int, b: Int, c: Int, d: Int): Int {
+    var aB = b - a
+    var cD = d - c
+    var crossing: Int
+    when {
+        d > b && c > a -> crossing = aB + cD - (d - a)
+        d > b && a > c -> crossing = aB
+        b > d && a > c -> crossing = aB + cD - (b - c)
+        else -> crossing = cD
+    }
+    return if (crossing >= 0) crossing else -1
+}
